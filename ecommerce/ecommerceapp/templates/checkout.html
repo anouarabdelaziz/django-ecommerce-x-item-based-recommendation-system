@@ -1,0 +1,57 @@
+{% extends 'main.html' %}
+{% load static %} 
+{% block content %}
+<header>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="{% static 'js/chekout.js' %}" async></script>
+</header>
+{% block hide %}
+<li style="width: 650px;"></li>
+{% endblock hide %}
+<body>
+<div class="row">
+
+</div>
+
+<table class="table table-item">
+    <tr>
+        <th scope="col"><p>#</p></th>
+        <th scope="col"><p>Item</p></th>
+        <th scope="col"><p>price</p></th>
+        <th scope="col"><p>quantity</p></th>
+        <th scope="col"><p>Total</p></th>
+    </tr>
+     <hr>
+     <tbody>
+    {% for item in items %}
+        <tr class="our-row">
+            <td scope="row"><p>{{ forloop.counter }}</p></td>
+            <td><img style="height: 40px;width: 40px;" src="{{ item.item.imgURL }}"></td>
+            <td><p class="price-ele">${{item.item.price}}</p>
+            </td>
+            
+            <td style="justify-content: space-between;display: inline-flex;">
+            <p style="margin-right: 20px;"><strong>{{item.quantity}}</strong></p>
+                <button style="margin-right: 10px;" data-action='add' data-product = "{{item.id }}" class="btn btn-outline-secondary btn-sm"><img style="width:18px ;height: 16px;" src="{%static 'images/up-arrow.png'%}"></button>
+                <button data-action='sub' data-product = "{{item.id }}" class="btn btn-outline-secondary btn-sm"><img  style="width:18px ;height: 16px;" src="{%static 'images/down-arrow.png'%}"></button>
+            </td>
+            <td><p>${{ item.get_total }}</p> </td>
+        <td> 
+            <button type="button" data-action='remove' data-product = "{{item.id }}" class="btn btn-danger">Remove</button>
+        </td>
+        </tr>
+    {% endfor %}
+
+    <tr style="justify-content: flex-end;">
+     <td scope="row"><strong>Total :</strong></td>
+     <td scope="row">${{ order.order_total }}</td>
+    
+
+    </tr>
+    </tbody>
+</table>
+
+</body>
+
+{% endblock content %}

@@ -1,0 +1,81 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+<br><br><br>
+<header>
+    <script src="{% static 'js/cart.js' %}" async></script>
+</header>
+
+{% block hide %}
+<li style="width: 550px;"></li>
+{% endblock hide %}
+
+{% if request.user.is_authenticated %}
+{% else %}
+{% if messages %}
+<div class="col-12">
+<ul class="alert-success {{ message.tags }} alert-dismissible" role="alert">
+{% for message in messages %}
+<li class="{{ message.tags }}">{{ message }}</li>
+{% endfor %}
+</ul>
+</div>
+{% endif %}
+{% endif %}
+
+<div class="row" style="justify-content: center; display: flex;">
+        <div class="card" style="width: 18rem;margin-right: 10px;margin: 0 50px;">
+            <img class="card-img-top" src="{{ item.imgURL }}"style="height: 200px;width: 200px;justify-content: center;margin: auto;"  alt="Card image cap">
+            <div class="card-body">
+            <h5 class="card-title">{{ item.title }}</h5>
+            <button data-action= 'add_item' data-product ="{{ item.id }}" class="btn btn-outline-secondary"  style="width: 100%;"><strong>Add To Cart</strong></button>
+            <a href="{% url 'home' %}" style="margin-top: 10px;"class="btn btn-outline-info" ><strong>Continue Shoppimg</strong></a>
+            </div>
+        </div>
+        <div class="col-6" style="height: 400px;width: 440px; border: bold black 5px;">
+            <table class="table">
+                    <tr style="justify-content: center;display: flex;">
+                        <span><th> Item : </th>
+                        <td>{{ item.name }}</td></span>
+                    </tr>
+                    <tr>
+                        <th>Description : </th>
+                    </tr>
+                    <tr>
+                        {% if item.description == None %}
+                        <td>Currently unavailable</td>
+                        {% else %}
+                        <td style="font-size: small;">{{ item.description }}</td>
+                        {% endif %}
+                    </tr>
+             </table>
+        </div>
+</div>
+<hr>
+<br><br><br>
+<hr>
+<div style="height: 40px;align-content: initial;">
+    <h5 style="font-size: 40px;text-align: center;box-sizing: border-box;justify-content: flex-start;display: flex;">YOU MAY ALSO LIKE :</h5>
+</div>
+ <hr>
+ <br><br><br>
+<div class="row" style="border: bold black 5px;">
+    
+   {% for object in objects %}
+    <div class="card" style="width: 18rem;margin-right: 10px;">
+        <img class="img-card" class="card-img-top" style="width: 200px;" src="{{ object.imgURL }}"  alt="Card image cap"> 
+        <div class="card-body">
+        <apan><h5 class="card-title"><strong>{{ object.name }}</strong></h5><h3>${{object.price}}</h3></apan>
+        <a href="{% url 'cart' object.id %}" style="margin-bottom: 15px;" class="btn btn-outline-info"><strong>View</strong></a>
+        <button data-action= 'add_item' data-product ="{{ object.id }}" class="btn btn-outline-secondary"  style="width: 100%;"><strong>Add To Cart</strong></button>
+        </div>
+    </div>
+   {% endfor %}
+</div>
+
+
+
+
+
+
+{% endblock content %}

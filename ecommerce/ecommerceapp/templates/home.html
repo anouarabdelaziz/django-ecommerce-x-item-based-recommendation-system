@@ -1,0 +1,35 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block search %}
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        <select style="width: 50%;" name ='iditem' id ='iditem' class="custom-select" id="inputGroupSelect04">
+        {% for item in items_all %}
+        <option  value='{{ item.id }}'>{{ item.name }}</option>
+        {% endfor %}
+        </select>
+        <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search..</button>
+    </form>
+   {% endblock search %}
+{% block content %}
+<head>
+    <script src="{% static 'js/home.js' %}" async></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+</head>
+<body>
+<div class="row">
+    {% for object in objects %}
+    <div class="card" style="width: 18rem;margin-right: 10px;">
+        <img class="img-card" class="card-img-top" style="width: 200px;" src="{{ object.imgURL }}"  alt="Card image cap"> 
+        <div class="card-body">
+        <apan><h5 class="card-title"><strong>{{ object.name }}</strong></h5><h3>${{object.price}}</h3></apan>
+        <a href="{% url 'cart' object.id %}" style="margin-bottom: 15px;" class="btn btn-outline-info"><strong>View</strong></a>
+        <button data-action= 'add_item' data-product ="{{ object.id }}" class="btn btn-outline-secondary"  style="width: 100%;"><strong>Add To Cart</strong></button>
+        </div>
+    </div>
+   {% endfor %}
+</div> 
+
+</body>
+{% endblock content %}

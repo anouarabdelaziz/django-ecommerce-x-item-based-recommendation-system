@@ -1,0 +1,45 @@
+.card-count{
+color: black;
+background-color: whitesmoke;
+font-size: 20px;
+margin-left: 5px;
+width: 22px;
+padding: 5px;
+border-radius: 100%;
+
+}
+
+body{
+    background-color: white;
+   
+}
+.btn-outline-info{
+margin-bottom: 15px;
+}
+
+.row{
+    justify-content: space-around;
+}
+.card{
+   margin-bottom: 30px;
+   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.img-card{
+    height:200px;
+    width: 80px;
+    justify-content: center;
+    margin: auto;
+    margin-bottom: 20px;
+}
+.card h5{
+    text-align: center;
+}
+.card p{
+    justify-content: center;
+    margin: auto;
+}
+.card a{
+    justify-content: center;
+    display: flex;
+    margin: auto;
+}
