@@ -87,7 +87,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'ecom',
         'USER': 'postgres',
-        'PASSWORD':'anouarnahi&9',
+        'PASSWORD':'**********',
         'HOST':'localhost',
         'PORT':'5432',
 
